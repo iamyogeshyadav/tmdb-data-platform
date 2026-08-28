@@ -1,0 +1,4 @@
+[project]
+name = "tmdb-data-platform"
+version = "0.1.0"
+requires-python = ">=3.14"

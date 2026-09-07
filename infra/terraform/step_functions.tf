@@ -27,9 +27,17 @@ resource "aws_iam_role_policy" "step_functions" {
       {
         Effect = "Allow"
         Action = [
-          "lambda:InvokeFunction"
+        "lambda:InvokeFunction",
+        "glue:StartJobRun",
+        "glue:GetJobRun",
+        "glue:GetJobRuns",
+        "glue:BatchStopJobRun"
         ]
-        Resource = aws_lambda_function.ingestion.arn
+
+        Resource = [
+          aws_lambda_function.ingestion.arn,
+          aws_glue_job.transform_movies.arn
+        ]
       }
     ]
   })
@@ -49,6 +57,17 @@ resource "aws_sfn_state_machine" "tmdb_pipeline" {
 
         Parameters = {
           FunctionName = aws_lambda_function.ingestion.arn
+        }
+
+        Next = "TransformMovies"
+      }
+
+      TransformMovies = {
+        Type = "Task"
+        Resource = "arn:aws:states:::glue:startJobRun.sync"
+
+        Parameters = {
+          JobName = aws_glue_job.transform_movies.name
         }
 
         End = true

@@ -38,8 +38,8 @@ resource "aws_iam_role_policy" "glue" {
         ]
 
         Resource = [
-      "${aws_s3_bucket.data_lake.arn}/raw/*",
-      "${aws_s3_bucket.data_lake.arn}/scripts/*"]
+          "${aws_s3_bucket.data_lake.arn}/raw/*",
+        "${aws_s3_bucket.data_lake.arn}/scripts/*"]
       },
       {
         Effect = "Allow"

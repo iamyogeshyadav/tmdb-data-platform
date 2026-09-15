@@ -27,11 +27,11 @@ resource "aws_iam_role_policy" "step_functions" {
       {
         Effect = "Allow"
         Action = [
-        "lambda:InvokeFunction",
-        "glue:StartJobRun",
-        "glue:GetJobRun",
-        "glue:GetJobRuns",
-        "glue:BatchStopJobRun"
+          "lambda:InvokeFunction",
+          "glue:StartJobRun",
+          "glue:GetJobRun",
+          "glue:GetJobRuns",
+          "glue:BatchStopJobRun"
         ]
 
         Resource = [
@@ -63,7 +63,7 @@ resource "aws_sfn_state_machine" "tmdb_pipeline" {
       }
 
       TransformMovies = {
-        Type = "Task"
+        Type     = "Task"
         Resource = "arn:aws:states:::glue:startJobRun.sync"
 
         Parameters = {

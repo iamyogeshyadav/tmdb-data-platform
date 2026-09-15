@@ -52,8 +52,8 @@ resource "aws_scheduler_schedule" "eventbridge_scheduler" {
     input = jsonencode({})
 
     retry_policy {
-        maximum_event_age_in_seconds = 3600
-        maximum_retry_attempts       = 3
+      maximum_event_age_in_seconds = 3600
+      maximum_retry_attempts       = 3
     }
   }
 

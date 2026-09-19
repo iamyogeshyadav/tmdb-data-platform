@@ -49,7 +49,8 @@ resource "aws_iam_role_policy" "github_actions_terraform" {
           "glue:*",
           "states:*",
           "scheduler:*",
-          "secretsmanager:*"
+          "secretsmanager:*",
+          "redshift-serverless:*"
         ]
 
         Resource = "*"

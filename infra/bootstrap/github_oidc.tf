@@ -81,6 +81,21 @@ resource "aws_iam_role_policy" "github_actions_terraform" {
         Effect = "Allow"
 
         Action = [
+          "iam:CreateServiceLinkedRole"
+        ]
+
+        Resource = "*"
+
+        Condition = {
+          StringEquals = {
+            "iam:AWSServiceName" = "redshift.amazonaws.com"
+          }
+        }
+      },
+      {
+        Effect = "Allow"
+
+        Action = [
           "sts:GetCallerIdentity"
         ]
 

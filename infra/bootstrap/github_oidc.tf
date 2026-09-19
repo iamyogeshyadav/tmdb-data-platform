@@ -100,6 +100,26 @@ resource "aws_iam_role_policy" "github_actions_terraform" {
         ]
 
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+
+        Action = [
+          "ec2:DescribeAccountAttributes",
+          "ec2:DescribeAvailabilityZones",
+          "ec2:DescribeVpcs",
+          "ec2:DescribeVpcAttribute",
+          "ec2:DescribeSubnets",
+          "ec2:DescribeSecurityGroups",
+          "ec2:DescribeSecurityGroupRules",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:DescribeVpcEndpoints",
+          "ec2:DescribeRouteTables",
+          "ec2:DescribeNetworkAcls",
+          "ec2:DescribeInternetGateways"
+        ]
+
+        Resource = "*"
       }
     ]
   })
